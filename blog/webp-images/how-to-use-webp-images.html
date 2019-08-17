@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta tags -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>How to use webp images to make websites load fast - Carmen Chung</title>
+  <meta content="Webp images optimise website loading speed" name="keywords" />
+  <meta content="How to use webp images to make websites load fast" name="description" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png" sizes="32x32" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Bootstrap CSS File -->
+  <link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- CSS Library Files -->
+  <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
+  <link href="../../lib/magnific-popup/magnific-popup.css" rel="stylesheet" />
+
+  <!-- Custom CSS styles -->
+  <link href="../../css/blog.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet" />
+  <link href="../../css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav id="main-nav-subpage" class="subpage-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="logo">
+          <a href="../../index.html">
+            <div class="text-center">
+              <h2>CARMEN CHUNG</h2>
+            </div>
+          </a>
+        </div>
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="../../index.html" class="smoothScroll">Home</a></li>
+          <li><a href="../../index.html#about" class="smoothScroll">About</a></li>
+          <li><a href="../../index.html#portfolio" class="smoothScroll">Portfolio</a></li>
+          <li><a href="../../index.html#blog" class="smoothScroll">Blog</a></li>
+          <li><a href="../../index.html#contact" class="smoothScroll">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Main Content -->
+  <div class="main-content paddsection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <div class="container-main single-main">
+              <div class="col-md-12">
+                <div class="block-main mb-20">
+                  <img src="how-to-use-webp-images.png" class="img-responsive"
+                    alt="How to use webp images to make websites load fast" /></a>
+
+                  <div class="content-main single-post padDiv">
+                    <div class="blog-title">
+                      <h1>How to make your website load lightning fast with WebP images</h1>
+                    </div>
+                    <div class="post-meta">
+                      <ul class="list-unstyled mb-0">
+                        <li class="author">By: Carmen Chung</li>
+                        <li class="date">Date: 14 March 2019</li>
+                      </ul>
+                    </div>
+                    <p class="mb-20">Ever felt like your website takes forever to load?</p>
+                    <p class="mb-20">The good news is that you're not alone. A <a
+                        href="https://think.storage.googleapis.com/docs/mobile-page-speed-new-industry-benchmarks.pdf"
+                        target="_blank">report</a>
+                      published by Google found that 70%
+                      of the pages they analysed took more than 10 seconds to load - for just one page.</p>
+                    <p class="mb-20">The bad news is…well, that's bad. That same report found that 53% of visitors will
+                      leave a webpage on mobile if it takes longer than three seconds to load. That means that every
+                      second your website fails to load, a potential customer or client is dropping off.</p>
+                    <p class="mb-20">Fortunately, there is still some good news left: the WebP file format can compress
+                      your images to a size even smaller than a JPG file, with almost no reduction in quality, making
+                      your website load more than twice as fast. And best of all, with less than 0.1% of websites
+                      optimising their images with WebP (more on why later), you can gain a real advantage over your
+                      competitors.</p>
+                    <p class="subheading">Back it up a second: what is WebP?</p>
+                    <p class="mb-20">WebP is an image format that provides lossless and lossy compression for images on
+                      the Internet using predictive coding to encode an image. It was introduced in 2010, and is
+                      currently being developed and supported by Google. But it's not just Google that is using WebP:
+                      Pinterest, Facebook (on Android devices), and YouTube's thumbnails all use WebP images, as well as
+                      other big players.</p>
+                    <p class="mb-20"><a href="https://w3techs.com/technologies/details/im-webp/all/all"
+                        target="_blank">Google
+                        claims</a> that a WebP lossless image is 26% smaller than its PNG equivalent,
+                      and that a WebP lossy image is 25–34% smaller than its JPG equivalent (as of Feb. 2019).</p>
+                    <p class="mb-20">Let's take WebP images for a test. When I ran my JPG image through the WebP
+                      converter, I got the following results:</p>
+                    <p class="mb-20">
+                      <ul>
+                        <li>JPG image (already compressed): 279 KB</li>
+                        <li>WebP at 100% lossless: 451 KB <i>(yes, this is higher - more on why below!)</i></li>
+                        <li>WebP at 80% lossy: 156 KB <i>(56% of the original size)</i></li>
+                      </ul>
+                    </p>
+                    <img src="https://cdn-images-1.medium.com/max/1600/1*ncFM96KNeGVb7LN85oYTIQ.png"
+                      class="img-responsive" alt="WebP images compared to jpg and png lossless and lossy compression" />
+                    <p class="caption">Left: Original jpg at 279 KB. Middle: 100% lossless WebP at 451 KB. Right: 80%
+                      lossy WebP at 156 KB.</p>
+                    <p class="mb-20">So you're probably wondering why the lossless WebP image is actually bigger than
+                      the original JPG. This is because my original image was actually a lossless PNG file, which I then
+                      converted and ran through an image compressor to produce a smaller JPG file. During this
+                      compression process, the converter adds what is known as artifacts.</p>
+                    <p class="mb-20">When you reverse the process and try to convert the lossy JPG back to a lossless
+                      file format (like WebP), the algorithm will strip out unnecessary metadata (good) - but it will
+                      also encode each artifact it finds to reproduce it pixel-perfect (bad), often resulting in a file
+                      size increase, but no visual benefits. As a result, the final file will end up even larger than if
+                      you had converted it directly from the original PNG file!</p>
+                    <blockquote>💡<b>PRO TIP:</b> if your original image is a lossless file format (like PNG, BMP,
+                      or
+                      Raw),
+                      convert it straight to a WebP image. Do not convert it to a lossy file format (like JPG or GIF)
+                      first.</blockquote>
+                    <p class="mb-20">Lossy compression (the one on the right above) creates images that are
+                      approximately the same as the original: but because of the compression, the size is smaller (and
+                      quality sometimes suffers - although in this case, it's barely noticeable). In addition, lossy
+                      images lose their quality irreversibly - you can't go back once you've converted it to a lossy
+                      format, which means that if you compress the same lossy image over and over, each time, the
+                      quality deteriorates.</p>
+                    <blockquote>‍‍💡<b>PRO TIP:</b> if you compress to lossy formats, you should always compress
+                      the
+                      original
+                      image.
+                      Don't compress already compressed files over and over, or you will compound the quality
+                      deterioration.</blockquote>
+                    <p class="subheading">I'm not convinced. Show me the results.</p>
+                    <p class="mb-20">I placed the three images above on standalone test pages, and put all three pages
+                      simultaneously under siege (a benchmark utility testing tool I'll talk about more in another
+                      post), hitting my test pages with around 25 simultaneous users to see how quickly their response
+                      times would be.</p>
+                    <p class="mb-20">Unsurprisingly, the 80% lossy WebP file (i.e. the smallest one) was the fastest,
+                      clocking in with an average response time of 5.33 seconds to fully load; the JPG then took an
+                      average of 8.34 seconds; and the 100% lossless WebP file took an average of 12.28 seconds.</p>
+                    <p class="mb-20">So the 80% lossy WebP file was <b>2.3 times faster than the 100% lossless WebP
+                        file,
+                        and 1.56 times faster than the JPG.</b></p>
+                    <p class="mb-20">For websites that are even more image heavy (such as photography websites, blogs or
+                      visual portfolios), I would expect that the speed load difference would be even greater.</p>
+                    <p class="subheading">Why isn't everyone using the WebP file format for their images then?</p>
+                    <p class="mb-20">As of February 2019, <a href="https://caniuse.com/#feat=webp"
+                        target="_blank">browser
+                        support</a>
+                      for WebP files is close to 72%, with Chrome,
+                      Firefox, Opera and the latest Edge version supporting it. Unfortunately, Safari and IE don't (yet)
+                      support WebP files, so you still need to have a fallback for those browsers - more on that below.
+                    </p>
+                    <p class="subheading">Okay, I'm interested. How do I implement WebP?</p>
+                    <p class="mb-20">First, you'll need to convert your images to a WebP format. There are a few ways
+                      you can do this, including easy-to-use converters like <a
+                        href="https://image.online-convert.com/convert-to-webp" target="_blank">this one</a>
+                      or <a href="https://convertio.co/jpg-webp" target="_blank">this one</a>. For those who use
+                      Photoshop, you can also convert your image using a <a
+                        href="http://www.bytesin.com/open-save-webp-image-files-photoshop/" target="_blank">WebP
+                        plugin</a>.
+                    </p>
+                    <p class="mb-20">Alternatively, you can download Google’s WebP converter <a
+                        href="https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html"
+                        target="_blank">here</a>,
+                      which converts JPGs
+                      and PNGs to WebP, and WebP files to PNG or PPM. I prefer this option, because I trust the quality
+                      of Google’s software conversion more, and I can specify precise options with each conversion.</p>
+                    <p class="mb-20">For example, to convert a PNG file to 80% lossy WebP, you can the following command
+                      in Terminal/Command Line.</p>
+                    <blockquote>runcwebp -q 80
+                      mypicture.png -o mypicture.webp </blockquote>
+                    <p class="mb-20"></p>Straight forward instructions on how to
+                    convert using this option can be found <a href="https://developers.google.com/speed/webp/docs/cwebp"
+                      target="_blank">here</a>.</p>
+                    <p class="mb-20">Don’t forget that once you’ve converted your image, to keep your original JPG or
+                      PNG file, because you’ll need that as a fallback file in case the user’s browser does not support
+                      WebP.</p>
+                    <p class="subheading">I have my WebP images. Now what?</p>
+                    <p class="mb-20">Let’s just assume that you want to show your image in the normal HTML way (rather
+                      than inside a CSS class, which I’ll discuss later). To do this, use the following code (obviously
+                      replace references to "mypicture" with the name of your image file):</p>
+                    <blockquote>
+                      <p class="coding-language">(HTML)</p><br />
+                      &lt;picture&gt;<br />
+                      &emsp;&lt;source srcset="images/mypicture.webp" type="image/webp"&gt;<br />
+                      &emsp;&lt;source srcset="images/mypicture.jpg" type="image/jpeg"&gt;<br />
+                      &emsp;&lt;img alt="This is my face" src="images/mypicture.jpg"&gt;<br />
+                      &lt;/picture&gt;
+                    </blockquote>
+                    <p class="mb-20">What is happening here is that we’re first checking to see if the browser supports
+                      the &lt;picture&gt; tag. If it does, we’ll serve up the WebP image; if it doesn’t, we will serve
+                      up
+                      the
+                      JPG image. If the browser doesn’t even support the &lt;picture&gt; tag, then we’ll have a final
+                      fallback of the normal &lt;img&gt; tag.</p>
+                    <p class="subheading">Great. But what if I have an image inside a CSS class, like a background image
+                      url?</p>
+                    <p class="mb-20">This requires a bit more work.</p>
+                    <p class="mb-20">First, you’ll need to know when a user’s browser can’t handle your WebP files, so
+                      that you can load the back up JPG or PNG files (which will be in another CSS class) instead.</p>
+                    <p class="mb-20">In order to do this, I use Modernizr to help me detect what sort of browser the
+                      user is using (and therefore what features their browser supports). You can go to <a
+                        href="https://modernizr.com/download?webp-setclasses" target="_blank">their website</a>,
+                      click on “WebP” and then click on “Build”.</p>
+                    <img src="https://miro.medium.com/max/1400/1*8gzNQZlgOG428hwdTnU2sg.png" target="_blank"
+                      class="img-responsive" alt="Use Modernizr to detect WebP images" />
+                    <p class="mb-20">A popup will then appear — hit “Download” next to the Build command.</p>
+                    <img src="https://miro.medium.com/max/1400/1*TcF9wsQL3tpleXG9Kw_Tlw.png" target="_blank"
+                      class="img-responsive" alt="Use Modernizr to detect WebP images" />
+                    <p class="mb-20">After that, a file named "modernizr-custom.js" will be downloaded — move that file
+                      into your website directory (let’s say your root folder). In order to call and trigger Modernizr,
+                      put this at the bottom of the HTML page where you are displaying your WebP files:</p>
+                    <blockquote>
+                      <p class="coding-language">(HTML)</p>
+                      <p>
+                        <i>// First, refer to the location of your downloaded Modernizr script. I have just left mine in
+                          the
+                          root folder.</i>
+                      </p>
+                      &lt;script src="modernizr-custom.js"&gt;&lt;/script&gt;
+                      <p>
+                        <i>// Second, trigger Modernizr to detect WebP compatibility. <br />
+                        </i>
+                      </p>
+                      &lt;script&gt;
+                      <br />
+                      &emsp;Modernizr.on('webp', function (result) {
+                      <br />
+                      &emsp;&emsp;if (result) {
+                      <br />
+                      &emsp;&emsp;&emsp;// supported
+                      <br />
+                      &emsp;&emsp;} else {
+                      <br />
+                      &emsp;&emsp;&emsp;// not-supported
+                      <br />
+                      &emsp;&emsp;}
+                      <br />
+                      &emsp;});
+                      <br />
+                      &lt;/script&gt;
+                    </blockquote>
+                    <p class="mb-20">Modernizr will now automatically apply either a webp or no-webp class to the HTML
+                      element (in my example, the container holding the image), depending on whether it detects browser
+                      support for WebP or not. That means you can specify which images you want within your CSS class,
+                      by targeting either of those classes like this:</p>
+                    <blockquote>
+                      <p class="coding-language">(CSS)</p><br />
+                      .no-webp .container {</br>
+                      &emsp;background-image: url("mypicture.jpg");<br />
+                      }<br />
+                      <br />
+                      .webp .container {<br />
+                      &emsp;background-image: url("mypicture.webp");<br />
+                      }
+                    </blockquote>
+                    <p class="subheading">What happens if the user doesn’t have Javascript enabled?</p>
+                    <p class="mb-20">Ugh! Why would they do that? (I’m looking at you, Internet Explorer!)</p>
+                    <p class="mb-20">Modernizr does rely on Javascript being enabled on your user’s browser, so to get
+                      around this, you will need to add an HTML class at the top of the page, say &lt;html
+                      class=”no-js”&gt;.
+                    </p>
+                    <p class="mb-20">Then, add Javascript code that will successfully remove this class if Javascript is
+                      enabled:</p>
+                    <blockquote>
+                      <p class="coding-language">(HTML)</p><br />
+                      &lt;script&gt;<br />
+                      &emsp;document.documentElement.classList.remove("no-js");<br />
+                      &lt;/script&gt;
+                    </blockquote>
+                    <p class="mb-20">If Javascript is not enabled, then the class will automatically be applied to all
+                      the HTML elements on your page — and you can create a no-js class with the JPG image as the
+                      background image:</p>
+                    <blockquote>
+                      <p class="coding-language">(CSS)</p><br />
+                      .no-js .container {</br>
+                      &emsp;background-image: url("mypicture.jpg");<br />
+                      }
+                    </blockquote>
+                    <p class="subheading">Conclusion</p>
+                    <p class="mb-20">WebP images are relatively easy to implement when you are simply displaying images
+                      in your HTML code (you won’t need Modernizr or the "no-js" class), but become slightly more
+                      time-consuming when you use images within your CSS (say, as background images).</p>
+                    <p class="mb-20">Keep in mind that how long your website takes to load has a direct impact on the
+                      amount of time your visitors will spend on your site— and therefore, affect your lead conversion
+                      rate— so the time you spend in making the switch to WebP images is worth it, for the extra time
+                      your users will stay on your website.</p>
+                    <p class="mb-20">If you implement WebP images, please <a href="https://twitter.com/carmenhchung"
+                        target="_blank">tweet at me</a> —
+                      I’d love to hear
+                      how much faster your website is!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer" class="text-center">
+    <div class="container">
+      <div class="socials-media text-center">
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://twitter.com/carmenhchung" target="_blank"><i class="ion-social-twitter"></i></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/carmenchung/" target="_blank"><i class="ion-social-linkedin"></i></a>
+          </li>
+          <li>
+            <a href="https://github.com/carmenhchung" target="_blank"><i class="ion-social-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Library Files -->
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS file -->
+  <script src="../../js/main.js"></script>
+</body>
+
+</html>

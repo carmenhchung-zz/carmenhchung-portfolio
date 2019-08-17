@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta tags -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>How we halved our memory consumption in our Ruby on Rails app with jemalloc - Carmen Chung</title>
+  <meta content="Reduce memory consumption in ruby on rails app with jemalloc" name="keywords" />
+  <meta content="How we halved our memory consumption
+                    in Rails
+                    with jemalloc (and how you
+                    can too!)" name="description" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png" sizes="32x32" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Bootstrap CSS File -->
+  <link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- CSS Library Files -->
+  <link href="../../lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
+  <link href="../../lib/magnific-popup/magnific-popup.css" rel="stylesheet" />
+
+  <!-- Custom CSS styles -->
+  <link href="../../css/blog.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet" />
+  <link href="../../css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav id="main-nav-subpage" class="subpage-nav">
+    <div class="row">
+      <div class="container">
+
+        <div class="logo">
+          <a href="../../index.html">
+            <div class="text-center">
+              <h2>CARMEN CHUNG</h2>
+            </div>
+          </a>
+        </div>
+
+        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+        <ul class="nav-menu list-unstyled">
+          <li><a href="../../index.html" class="smoothScroll">Home</a></li>
+          <li><a href="../../index.html#about" class="smoothScroll">About</a></li>
+          <li><a href="../../index.html#portfolio" class="smoothScroll">Portfolio</a></li>
+          <li><a href="../../index.html#blog" class="smoothScroll">Blog</a></li>
+          <li><a href="../../index.html#contact" class="smoothScroll">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Main Content -->
+  <div class="main-content paddsection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <div class="container-main single-main">
+              <div class="col-md-12">
+                <div class="block-main mb-20">
+                  <img src="how-we-halved-memory-with-jemalloc.png" class="img-responsive"
+                    alt="Reduce memory consumption in ruby on rails app with jemalloc" /></a>
+
+                  <div class="content-main single-post padDiv">
+                    <div class="blog-title">
+                      <h1>How we halved our memory consumption in Rails with jemalloc</h1>
+                    </div>
+                    <div class="post-meta">
+                      <ul class="list-unstyled mb-0">
+                        <li class="author">By: Carmen Chung</li>
+                        <li class="date">Date: 10 October 2018</li>
+                      </ul>
+                    </div>
+                    <p class="mb-20">One of the earliest projects I was involved in at Valiant was investigating ways
+                      to
+                      optimise performance and memory consumption in our Rails web application. Although I had heard
+                      the
+                      age-old complaints about Rails applications being slow, bulky and prone to memory bloat, I had
+                      yet
+                      to come across any practical, easy-to-navigate solutions to these issues.</p>
+                    <p class="mb-20">Until we discovered jemalloc.</p>
+                    <p class="mb-20">In this blog post, I will be giving a brief overview of what jemalloc is; how to
+                      check your current Rails app’s performance and memory consumption (including testing to see
+                      whether you have a memory leak); how to install jemalloc locally and in production; and finally,
+                      show you what our end-results were after we switched to jemalloc (spoiler alert: we managed to
+                      halve our memory consumption in production!).</p>
+                    <p class="subheading">What is jemalloc?</p>
+                    <p class="mb-20">Ruby traditionally uses the C language function malloc to dynamically allocate,
+                      release, and re-allocate memory when storing objects. Jemalloc is a malloc(3) implementation
+                      developed by Jason Evans (hence the “je” initials at the start of malloc), which appears to be
+                      more effective at allocating memory compared to other allocators due to its focus on
+                      fragmentation
+                      avoidance and scalable concurrency support.</p>
+                    <p class="subheading">Step 1: Check your app’s memory consumption</p>
+                    <p class="mb-20">In order to determine whether switching to jemalloc actually has any positive
+                      effects on your Rails app, you first need to know how much memory is being consumed and how
+                      quickly the website responds. To check this locally, I added the following gems to the Gemfile
+                      (and did a bundle install):
+                    </p>
+                    <blockquote>gem "memory_profiler"<br />
+                      gem "derailed_benchmarks"</blockquote>
+                    <p class="mb-20">Note: you can run tests with these gems in the development, testing or
+                      production
+                      environments. If you want to run them in development / testing environments, make sure you
+                      remove
+                      the dotenv-rails gem from these environments in the Gemfile.</p>
+                    <p class="mb-20">To determine the total memory used by each gem in the Gemfile, run:</p>
+                    <blockquote>bundle exec derailed bundle:mem</blockquote>
+                    <p class="mb-20">To only show files above a certain memory usage, add CUT_OFF=0.3 (or whatever
+                      figure you want as the cut off). Also note that because Ruby only requires files once, if the
+                      same
+                      file is required by several libraries, the cost is only associated with the first library to
+                      require the file (duplicate entries will list all the parents they belong to).</p>
+                    <p class="mb-20">For example, a short excerpt of our results looked like this:</p>
+                    <blockquote>TOP: 70.2617 MiB<br />
+                      &emsp;rails/all: 16.4805 MiB<br />
+                      &emsp;rails: 6.1523 MiB (Also required by: active_record/railtie, active_model/railtie, and
+                      8
+                      others)<br />
+                      &emsp;rails/application: 4.707 MiB<br />
+                      &emsp;rails/engine: 3.543 MiB (Also required by: coffee/rails/engine)<br />
+                      rails/railtie: 3.293 MiB (Also required by: global_id/railtie, sprockets/railtie, and 3
+                      others)<br />
+                      &emsp;rails/configuration: 3.1484 MiB (Also required by:
+                      rails/railtie/configuration)<br />
+                      active_support/core_ext/object: 3.0469 MiB (Also required by:
+                      &emsp;paper_trail/has_paper_trail)<br />
+                      &emsp;active_support/core_ext/object/conversions: 2.5078
+                      MiB<br />
+                      &emsp;active_support/core_ext/hash/conversions: 1.8945
+                      MiB
+                      (Also
+                      required
+                      by:
+                      active_record/serializers/xml_serializer, active_model/serializers/xml)<br />
+                      &emsp;active_support/time: 1.7031 MiB (Also
+                      required by:
+                      active_record/base)<br />
+                      &emsp;active_support/core_ext/time: 1.625
+                      MiB<br />
+                      &emsp;active_support/core_ext/time/calculations:
+                      1.5391
+                      MiB
+                      (Also
+                      required
+                      by:
+                      &emsp;active_support/core_ext/numeric/time,
+                      &emsp;active_support/core_ext/string/conversions)<br />
+                      &emsp;active_support/core_ext/time/conversions: 1.1094 MiB (Also required by:
+                      &emsp;active_support/core_ext/time, active_support/core_ext/date_time/conversions)<br />
+                      &emsp;active_support/values/time_zone: 1.0664 MiB (Also required by:
+                      &emsp;active_support/time_with_zone,
+                      &emsp;active_support/core_ext/date_time/conversions)<br />
+                      &emsp;tzinfo: 0.8438 MiB (Also required by: et-orbi)<br />
+                      &emsp;tzinfo/timezone: 0.3867 MiB</blockquote>
+                    <p class="mb-20">(Note: 1 Mebibyte (MiB) = approximately 1.05 Megabytes.)</p>
+                    <p class="mb-20">Additionally, in your production environment, you can see the number of
+                      allocated
+                      objects created (by location, as well as by gem) when dependencies are required by running:
+                    </p>
+                    <blockquote>bundle exec derailed bundle:objects</blockquote>
+                    <p class="mb-20">Below is a sample of the number of objects created by our gems:
+                    </p>
+                    <blockquote>348351 activesupport<br />
+                      66931 erubis<br />
+                      54842 json<br />
+                      23655 addressable<br />
+                      15078 bundler<br />
+                      14833 heroics<br />
+                      13313 ruby<br />
+                      13034 haml<br />
+                      7186 actionpack<br />
+                      6370 sass</blockquote>
+                    <p class="mb-20">In order to check to see whether you have a memory leak in a production
+                      environment, you can run:</p>
+                    <blockquote>bundle exec derailed exec perf:mem_over_time</blockquote>
+                    <p class="mb-20">This command sends numerous requests to the app and profiles memory usage over
+                      time
+                      - if you have a true memory leak, the memory use will continue increasing; if you do not have
+                      a
+                      memory leak, usually you will see app memory use increasing until it hits a "plateau", then
+                      peters
+                      off.</p>
+                    <p class="mb-20">Remember that results vary (and seem to vary a bit when running say 2,000 tests
+                      compared to 20,000 tests). By running the tests a number of times, we discovered that on
+                      average,
+                      our app's plateau seemed to occur around the 1.7 MiB - 1.8 MiB mark. This seemed to roughly
+                      correspond with our Heroku logs, which showed a plateau around the 1.6 MiB mark.</p>
+                    <blockquote>💡PRO TIP: To set the number of tests you want to run rather than let it run
+                      forever,
+                      you can use:<br />
+                      &emsp;TEST_COUNT=20_000 bundle exec derailed exec perf:mem_over_time.</blockquote>
+                    <p class="subheading">Step 2: Check your app’s performance and speed</p>
+                    <p class="mb-20">To check the overall efficiency of your application, you can hit an endpoint
+                      in
+                      the
+                      application using benchmark-ips (that is, benchmarking a block of code’s iterations per
+                      second)
+                      with this command:</p>
+                    <blockquote>bundle exec derailed exec perf:ips</blockquote>
+                    <p class="mb-20">A higher value is better as it means more iterations of the code block per
+                      second.
+                      A few of our results are as follows:</p>
+                    <blockquote>Warming up --------------------------------------
+                      ips 1.000 i/100ms
+                      Calculating -------------------------------------
+                      ips 5.070 (± 0.0%) i/s - 26.000 in 5.141956s
+
+                      Warming up --------------------------------------
+                      ips 1.000 i/100ms
+                      Calculating -------------------------------------
+                      ips 5.162 (± 0.0%) i/s - 26.000 in 5.051505s
+
+                      Warming up --------------------------------------
+                      ips 1.000 i/100ms
+                      Calculating -------------------------------------
+                      ips 4.741 (± 0.0%) i/s - 24.000 in 5.125214s</blockquote>
+                    <p class="subheading">Step 3: Install Jemalloc (locally and in production)</p>
+                    <p class="mb-20">To install jemalloc locally, simply add this to the Gemfile and bundle
+                      install:
+                    </p>
+                    <blockquote>gem 'jemalloc'</blockquote>
+                    <p class="mb-20">Note: if you use rvm (and have already installed Ruby 2.4.1), run rvm
+                      reinstall
+                      2.4.1 -C —with-jemalloc to reinstall Ruby with jemalloc.
+                    </p>
+                    <p class="mb-20">To check that your version of Ruby uses jemalloc, run:</p>
+                    <blockquote>ruby -r rbconfig -e "puts RbConfig::CONFIG['LIBS']".</blockquote>
+                    <p class="mb-20">Your response should be something like:</p>
+                    <blockquote>-lpthread -ljemalloc -ldl -lobjc</blockquote>
+                    <p class="mb-20">(The -ljemalloc means jemalloc is loaded when starting Ruby.)</p>
+                    <p class="mb-20">But what about in production? There are a few ways to add jemalloc in
+                      Heroku, but
+                      we found that the easiest way was to just add the buildpack with this command:</p>
+                    <blockquote>heroku buildpacks:add --index 1
+                      https://github.com/mojodna/heroku-buildpack-jemalloc.git
+                      --app [your app name here]</blockquote>
+                    <p class="mb-20">To confirm that it has been installed, run heroku buildpacks --app [your
+                      app name
+                      here], and you should see the buildpack listed.</p>
+                    <p class="mb-20">Alternatively, you can add the buildpack in Settings → Buildpacks → Add
+                      buildpack
+                      in the Heroku dashboard.</p>
+                    <p class="subheading">Step 4: Check results locally</p>
+                    <p class="mb-20">Run the same commands as in Step 1 to check memory consumption and speed
+                      post-jemalloc. Our results showed a 8.6953 MiB (9.117 MB) — which is 12.38% — saving of
+                      memory
+                      over the entire app. For allocated objects by location, we saved 5,064 MiB (5,310 MB) of
+                      memory.
+                    </p>
+                    <p class="subheading">Step 5: Check results in production</p>
+                    <p class="mb-20">We used siege, an http load testing and benchmarking utility, to
+                      overload our
+                      review applications with requests (stay tuned for our upcoming post on how to do
+                      this!). Without
+                      jemalloc, we found that we were averaging around 2.5 transactions per second, with an
+                      average of
+                      around 160 failed transactions during a 20 minute timeframe. With jemalloc, we ended
+                      up with an
+                      average of 6.6 transactions per second, and only 1.5 failed transactions during a 20
+                      minute
+                      timeframe.</p>
+                    <p class="mb-20">Most impressively, our Heroku dashboard results showed remarkable,
+                      almost
+                      immediate
+                      improvements. Prior to jemalloc, our memory usage would hit around 2 GB before being
+                      automatically
+                      force-restarted. After jemalloc, our memory usage dropped down to the 1 GB mark,
+                      avoiding the
+                      force-restart entirely.</p>
+                    <img src="https://miro.medium.com/max/1400/1*5_8rjKsA103kQL0yWb49Xw.png" class="img-responsive"
+                      alt="jemalloc results memory consumption ruby on rails app" />
+                    <p class="mb-20">Similarly, our response times to requests showed rapid decline — prior
+                      to
+                      jemalloc,
+                      some requests were taking as long as 30 seconds. Afterwards, our response times
+                      dropped to
+                      around
+                      5–10 seconds.</p>
+                    <img src="https://miro.medium.com/max/1400/1*PMpIxL_wEhBkGJMUhPShuA.png" class="img-responsive"
+                      alt="jemalloc results speed performance ruby on rails app" />
+                    <br />
+                    <p class="subheading">Conclusion</p>
+                    <p class="mb-20">We had incredible, tangible performance and memory consumption
+                      benefits after
+                      implementing jemalloc; and while this may not be the silver bullet to combat Rails’s
+                      reputation
+                      in
+                      the industry for sub-optimal garbage collection, it certainly helped us optimise our
+                      platform.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer" class="text-center">
+    <div class="container">
+      <div class="socials-media text-center">
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://twitter.com/carmenhchung"><i class="ion-social-twitter"></i></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/carmenchung/"><i class="ion-social-linkedin"></i></a>
+          </li>
+          <li>
+            <a href="https://github.com/carmenhchung"><i class="ion-social-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Library Files -->
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS file -->
+  <script src="../../js/main.js"></script>
+</body>
+
+</html>
