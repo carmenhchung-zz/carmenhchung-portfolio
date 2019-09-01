@@ -381,7 +381,6 @@ nav ul li a:focus {
 
 #portfolio .portfolio-container {
   display: inline-block;
-  margin-bottom: 50px;
   width: 100%;
 }
 
@@ -442,7 +441,7 @@ nav ul li a:focus {
   height: auto;
   width: 100%;
   background: #f7f7f7;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   position: relative;
 }
 
