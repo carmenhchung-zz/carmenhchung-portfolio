@@ -1,3 +1,4 @@
+/*-----------------------------------------------------------------------------------*/
 /*  General Styling
 /*-----------------------------------------------------------------------------------*/
 
@@ -144,26 +145,6 @@ p {
   padding-top: 10px;
 }
 
-.form-control {
-  background-color: transparent;
-  border: 1px solid #999;
-  border-radius: 0;
-  color: #999999;
-  font-size: 12px;
-  font-weight: 500;
-  height: 50px;
-  letter-spacing: 0.1em;
-  padding-left: 10px;
-  margin: 0 0 25px 0;
-  line-height: 14px;
-  text-transform: uppercase;
-}
-
-.form-control:focus {
-  box-shadow: none;
-  outline: 0 none;
-}
-
 .paddsection {
   padding-top: 80px;
 }
@@ -173,20 +154,12 @@ p {
   padding-bottom: 80px !important;
 }
 
-.hvr-shutter-in-horizontal::before {
-  background: #333;
-}
-
-.hvr-shutter-in-horizontal:hover {
-  background: #ffd700;
-}
-
 .mb-20 {
   margin-bottom: 20px;
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*  Navbar Top
+/*  Navbar
 /*-----------------------------------------------------------------------------------*/
 
 nav {
@@ -288,7 +261,7 @@ nav ul li a:focus {
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*  Aout-us
+/*  About
 /*-----------------------------------------------------------------------------------*/
 
 #about {
@@ -316,7 +289,7 @@ nav ul li a:focus {
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*   Quotes
+/*  Quotes
 /*-----------------------------------------------------------------------------------*/
 
 #quotes {
@@ -680,8 +653,4 @@ button:hover .button-text {
   font-weight: 500;
   margin-top: 0;
   text-transform: uppercase;
-}
-
-.credits {
-  font-size: 13px;
 }

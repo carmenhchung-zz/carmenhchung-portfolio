@@ -1,6 +1,4 @@
-/** Width between 1200x to 0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 0px to 1200 px */
 
 @media (min-width: 1200px) {
 
@@ -11,9 +9,7 @@
   }
 }
 
-/** Width between 992px to 1199px
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 992px to 1199px */
 
 @media (min-width: 992px) and (max-width: 1199px) {
 
@@ -24,9 +20,7 @@
   }
 }
 
-/** Width between 768px to 991px
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 768px to 991px */
 
 @media (min-width: 768px) and (max-width: 991px) {
 
@@ -66,7 +60,7 @@
   }
 
   /* About */
-  .head-info .header-content .cmaster h1 {
+  .head-info .header-content h1 {
     font-size: 32px;
   }
 
@@ -128,9 +122,7 @@
   }
 }
 
-/** Width between 767px to 0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 0px to 767px */
 
 @media (max-width: 767px) {
 
@@ -241,9 +233,7 @@
   }
 }
 
-/** Width between 600px to 0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 0px to 600px */
 
 @media (max-width: 600px) {
 
@@ -354,9 +344,7 @@
   }
 }
 
-/** Width between 480px to 0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 0px to 480px */
 
 @media (max-width: 480px) {
 
@@ -466,9 +454,7 @@
   }
 }
 
-/** Width between 320px to 0
- *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* Width between 0px to 320px */
 
 @media (max-width: 320px) {
 
