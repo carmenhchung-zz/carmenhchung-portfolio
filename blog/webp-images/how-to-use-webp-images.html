@@ -67,9 +67,12 @@
             <div class="container-main single-main">
               <div class="col-md-12">
                 <div class="block-main mb-20">
-                  <img src="how-to-use-webp-images.png" class="img-responsive"
-                    alt="How to use webp images to make websites load fast" /></a>
-
+                  <picture>
+                    <source srcset="how-to-use-webp-images.webp" class="img-responsive" type="image/webp">
+                    <source srcset="how-to-use-webp-images.jpg" class="img-responsive" type="image/jpeg">
+                     <img alt="How to use webp images to make websites load fast" class="img-responsive"
+                      src="how-to-use-webp-images.jpg">
+                  </picture>
                   <div class="content-main single-post padDiv">
                     <div class="blog-title">
                       <h1>How to make your website load lightning fast with WebP images</h1>
@@ -332,10 +335,21 @@
     </div>
   </div>
 
+  <!-- Modernizr for WebP images -->
+  <script src="modernizr-custom.js"></script>
+  <script>
+    // Modernizr used to detect webp compatability.
+    Modernizr.on('webp', function (result) {
+      if (result) {
+        // supported
+      } else {
+        // not-supported
+      }
+    });
+  </script>
+
   <!-- JS Library Files -->
   <script src="../../lib/jquery/jquery.min.js"></script>
-  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom JS file -->
   <script src="../../js/main.js"></script>

@@ -68,8 +68,14 @@
             <div class="container-main single-main">
               <div class="col-md-12">
                 <div class="block-main mb-20">
-                  <img src="what-i-learned-during-software-internship.png" class="img-responsive"
-                    alt="What I learned during my Coder Academy software engineering internship at Valiant Finance" /></a>
+                  <picture>
+                    <source srcset="what-i-learned-during-software-internship.webp" class="img-responsive"
+                      type="image/webp">
+                    <source srcset="what-i-learned-during-software-internship.jpg" class="img-responsive"
+                      type="image/jpeg">
+                     <img alt="What I learned during my software engineering internship at Valiant Finance"
+                      class="img-responsive" src="what-i-learned-during-software-internship.jpg">
+                  </picture>
 
                   <div class="content-main single-post padDiv">
                     <div class="blog-title">
@@ -338,10 +344,21 @@
     </div>
   </div>
 
+  <!-- Modernizr for WebP images -->
+  <script src="modernizr-custom.js"></script>
+  <script>
+    // Modernizr used to detect webp compatability.
+    Modernizr.on('webp', function (result) {
+      if (result) {
+        // supported
+      } else {
+        // not-supported
+      }
+    });
+  </script>
+
   <!-- JS Library Files -->
   <script src="../../lib/jquery/jquery.min.js"></script>
-  <script src="../../lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom JS file -->
   <script src="../../js/main.js"></script>
