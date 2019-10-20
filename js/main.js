@@ -11,6 +11,7 @@ $(document).ready(function () {
 
   $('a[href^="#"]').on('click', function (e) {
     e.preventDefault();
+    history.pushState({}, "", this.href.replace('#', ''));
     $(document).off("scroll");
 
     $('a').each(function () {
@@ -29,11 +30,9 @@ $(document).ready(function () {
     $('html, body').stop().animate({
       'scrollTop': target.offset().top - 80
     }, 500, 'swing', function () {
-      window.location.hash = target.selector;
       $(document).on("scroll", onScroll);
     });
   });
-
 
   function onScroll(event) {
     if ($('.home').length) {
@@ -48,7 +47,6 @@ $(document).ready(function () {
   // ========================================================================= //
   // NAVBAR SHOW - HIDE
   // ========================================================================= //
-
 
   $(window).scroll(function () {
     var scroll = $(window).scrollTop();
