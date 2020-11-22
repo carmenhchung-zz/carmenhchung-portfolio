@@ -68,10 +68,6 @@ b {
   padding: 10px 0;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .caption {
   font-size: 18px;
   text-align: center;
@@ -153,7 +149,7 @@ a:focus {
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*  Navbar
+/* Navbar
 /*-----------------------------------------------------------------------------------*/
 
 .navbar {
@@ -232,4 +228,25 @@ nav ul li a {
   -o-transition: all 0.5s ease-in-out 0s;
   -webkit-transition: all 0.5s ease-in-out 0s;
   transition: all 0.5s ease-in-out 0s;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Small devices
+/*-----------------------------------------------------------------------------------*/
+
+@media (max-width: 991px) {
+  .row.text-top {
+    padding: 15% 5% 5% !important;
+    text-align: center !important;
+  }
+
+  .card {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-body h1 {
+    font-size: 25px;
+  }
 }
