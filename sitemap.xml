@@ -9,33 +9,73 @@
 
 <url>
   <loc>https://www.carmenhchung.com/</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.carmenhchung.com/index.html</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.carmenhchung.com/blog/jemalloc/how-we-halved-memory-with-jemalloc.html</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <loc>https://www.carmenhchung.com/about.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.carmenhchung.com/blog/webp-images/how-to-use-webp-images.html</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <loc>https://www.carmenhchung.com/portfolio.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.carmenhchung.com/blog/gmail-hack/why-you-think-your-gmail-account-was-hacked.html</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <loc>https://www.carmenhchung.com/testimonials.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.carmenhchung.com/blog/engineering-internship/what-i-learned-during-software-internship.html</loc>
-  <lastmod>2019-09-01T00:10:00+00:00</lastmod>
+  <loc>https://www.carmenhchung.com/blog.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/contact.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/why-you-should-start-a-newsletter-today.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/how-to-improve-your-focus-in-2021.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/tips-for-time-estimations.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/how-we-halved-memory-with-jemalloc.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/how-to-use-webp-images.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/what-i-learned-during-software-internship.html</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.carmenhchung.com/why-you-think-your-gmail-account-was-hacked</loc>
+  <lastmod>2021-01-21T05:48:49+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 
