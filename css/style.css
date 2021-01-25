@@ -148,6 +148,27 @@ a:focus {
   color: #ffd700 !important;
 }
 
+/*----------------------------------------------------------------------------*/
+/* Popup
+/*----------------------------------------------------------------------------*/
+
+#popup {
+  position: fixed !important;
+  top: 35% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 50% !important;
+  visibility: hidden;
+  z-index: 10002;
+  opacity: 0;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  background: #ffd700;
+  padding: 10% 5%;
+  color: #000000;
+}
+
 /*-----------------------------------------------------------------------------------*/
 /* Navbar
 /*-----------------------------------------------------------------------------------*/
@@ -243,10 +264,68 @@ nav ul li a {
   .card {
     width: 100% !important;
   }
+
+  #popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80% !important;
+    visibility: hidden;
+    z-index: 10002;
+    opacity: 0;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    background: #ffd700;
+    padding: 20% 10%;
+    color: #000000;
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .card-body h1 {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 500px) {
+  #popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 85% !important;
+    visibility: hidden;
+    z-index: 10002;
+    opacity: 0;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    background: #ffd700;
+    padding: 30% 10%;
+    color: #000000;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  #popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    visibility: hidden;
+    z-index: 10002;
+    opacity: 0;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    background: #ffd700;
+    padding: 40% 5%;
+    color: #000000;
+    font-size: 2rem;
   }
 }
